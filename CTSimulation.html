@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CT Simulation and Planning Order</title>
+    <style>
+        body { font-family: Segoe UI, Tahoma, sans-serif; line-height: 1.4; font-size: 13px; color: #333; margin: 30px; background-color: #f4f7f6; }
+        .form-container { max-width: 950px; margin: 0 auto; border: 1px solid #ccc; padding: 30px; background: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1 { text-align: center; border-bottom: 2px solid #2c3e50; padding-bottom: 10px; color: #2c3e50; text-transform: uppercase; }
+        .section-title { background: #ecf0f1; padding: 8px; font-weight: bold; margin-top: 20px; border-left: 4px solid #2980b9; text-transform: uppercase; }
+        .grid-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 10px; }
+        .col-span-2 { grid-column: span 2; }
+        .col-span-4 { grid-column: span 4; }
+        label { display: block; font-weight: 600; font-size: 11px; color: #7f8c8d; margin-bottom: 4px; }
+        
+        input[type="text"], input[type="date"], textarea {
+            width: 100%; padding: 8px; border: 1px solid #dcdde1; border-radius: 4px; box-sizing: border-box;
+        }
+
+        .checkbox-group { display: flex; flex-wrap: wrap; gap: 15px; padding: 8px 0; }
+        .check-item { display: flex; align-items: center; gap: 6px; font-size: 12px; }
+        
+        .signature-row { display: flex; justify-content: space-between; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; }
+        .sig-box { width: 48%; text-align: center; }
+        .sig-line { border-top: 1px solid #333; margin-top: 30px; padding-top: 5px; font-weight: bold; font-size: 12px; }
+        
+        .consent-box { margin: 20px 0; padding: 15px; background: #fafafa; border-left: 4px solid #2980b9; line-height: 1.7; text-align: justify; }
+        
+        .action-bar { display: flex; justify-content: center; margin: 40px 0; width: 100%; }
+        .btn { padding: 12px 30px; background: #2980b9; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .btn:hover { background: #1f6391; }
+
+        @media print { 
+            .action-bar { display: none; }
+            body { margin: 10px; }
+            .form-container { max-width: 100%; margin: 0; padding: 15px; box-shadow: none; border: none; }
+            h1 { padding-bottom: 5px; margin-bottom: 5px; font-size: 16px; }
+            .section-title { padding: 4px; margin-top: 8px; margin-bottom: 4px; font-size: 11px; }
+            .grid-row { gap: 8px; margin-top: 5px; }
+            label { font-size: 10px; margin-bottom: 2px; }
+            input[type="text"], input[type="date"], textarea { padding: 4px; font-size: 11px; }
+            .checkbox-group { gap: 10px; padding: 4px 0; }
+            .check-item { font-size: 10px; gap: 4px; }
+            .signature-row { margin-top: 20px; padding-top: 10px; }
+            .sig-box { width: 48%; }
+            .sig-line { margin-top: 15px; }
+            .consent-box { margin: 10px 0; padding: 8px; font-size: 11px; }
+            div[style*="text-align: center"] { font-size: 10px; margin-bottom: 10px; }
+            img { width: 60px !important; margin-bottom: 5px !important; }
+            textarea { rows: 2 !important; }
+        }
+        
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h1>CT Simulation and Planning Order</h1>
+    
+    <div style="text-align: center; margin-bottom: 20px; color: #666; font-size: 12px;">
+        <img src="LORMAlogo.png" style="width: 100px; margin-bottom: 10px;" alt="Lorma Logo">
+        <div>LORMA CANCER INSTITUTE, INC.</div>
+        <div>RADIATION ONCOLOGY DEPARTMENT</div>
+        <div>Carlatan, San Fernando City, La Union</div>
+        <div>Tel. No. (072) 700 0000</div>
+    </div>
+
+    <div class="section-title">Patient Information</div>
+    <div class="grid-row">
+        <div class="col-span-2"><label>Patient Name</label><input type="text"></div>
+        <div><label>IDNum</label><input type="text"></div>
+        <div><label>Hospital Number</label><input type="text"></div>
+        <div class="col-span-4"><label>Diagnosis</label><input type="text"></div>
+        <div><label>Age</label><input type="text"></div>
+        <div><label>Sex</label><input type="text"></div>
+        <div class="col-span-2"><label>Birthdate</label><input type="date"></div>
+    </div>
+
+    <div class="section-title">CT Simulation Details</div>
+    
+    <div style="margin: 15px 0;">
+        <label style="margin-bottom: 10px;">Treatment Technique</label>
+        <div class="checkbox-group">
+            <div class="check-item"><input type="checkbox"> 2D</div>
+            <div class="check-item"><input type="checkbox"> 3D</div>
+            <div class="check-item"><input type="checkbox"> IMRT</div>
+            <div class="check-item"><input type="checkbox"> IGRT</div>
+            <div class="check-item"><input type="checkbox"> VMAT</div>
+        </div>
+    </div>
+
+    <div style="margin: 15px 0;">
+        <label style="margin-bottom: 10px;">Scan Thickness</label>
+        <div class="checkbox-group">
+            <div class="check-item"><input type="checkbox"> 5 mm</div>
+            <div class="check-item"><input type="checkbox"> 3 mm</div>
+            <div class="check-item"><input type="checkbox"> Others</div>
+        </div>
+    </div>
+
+    <div style="margin: 15px 0;">
+        <label style="margin-bottom: 10px;">CT Procedure</label>
+        <div class="checkbox-group">
+            <div class="check-item"><input type="checkbox"> Plain</div>
+            <div class="check-item"><input type="checkbox"> Contrast</div>
+            <div class="check-item"><input type="checkbox"> Oral</div>
+            <div class="check-item"><input type="checkbox"> IV</div>
+            <div class="check-item"><input type="checkbox"> Rectal</div>
+        </div>
+    </div>
+
+    <div class="section-title">Treatment Area</div>
+    <div style="margin: 15px 0;">
+        <div class="checkbox-group">
+            <div class="check-item"><input type="checkbox"> Head</div>
+            <div class="check-item"><input type="checkbox"> Head & Neck</div>
+            <div class="check-item"><input type="checkbox"> Chest</div>
+            <div class="check-item"><input type="checkbox"> Whole Abdomen</div>
+            <div class="check-item"><input type="checkbox"> Pelvis</div>
+            <div class="check-item"><input type="checkbox"> Extremities</div>
+        </div>
+    </div>
+
+    <div class="section-title">Patient Orientation</div>
+    <div style="margin: 15px 0;">
+        <div class="checkbox-group">
+            <div class="check-item"><input type="checkbox"> Head-first, Supine</div>
+            <div class="check-item"><input type="checkbox"> Head-first, Prone</div>
+            <div class="check-item"><input type="checkbox"> Feet-first, Supine</div>
+            <div class="check-item"><input type="checkbox"> Feet-first, Prone</div>
+        </div>
+    </div>
+
+    <div class="section-title">Immobilization Devices</div>
+    <div style="margin: 15px 0;">
+        <div class="checkbox-group">
+            <div class="check-item"><input type="checkbox"> Head Baseplate</div>
+            <div class="check-item"><input type="checkbox"> HNS Baseplate</div>
+            <div class="check-item"><input type="checkbox"> Breast Board</div>
+            <div class="check-item"><input type="checkbox"> Wing Board</div>
+            <div class="check-item"><input type="checkbox"> Thermoplastic Mask</div>
+            <div class="check-item"><input type="checkbox"> Vacuum Bag</div>
+            <div class="check-item"><input type="checkbox"> Knee Wedge</div>
+        </div>
+    </div>
+
+    <div class="section-title">Notes</div>
+    <div class="grid-row">
+        <div class="col-span-4"><label>Additional Notes</label><textarea rows="4"></textarea></div>
+    </div>
+
+    <div class="section-title">CT Simulation Consent</div>
+    <div class="consent-box">
+        <p>
+            I hereby authorize the LORMA CANCER INSTITUTE, INC.  RADIATION ONCOLOGY DEPARTMENT to perform the foregoing CT simulation procedure as part of my radiotherapy treatment.
+        </p>
+    </div>
+
+    <div class="signature-row">
+        <div class="sig-box">
+            <label>Performed by</label>
+            <div class="sig-line"></div>
+            <label style="margin-top: 5px;">Date & Time</label>
+            <input type="date" id="performDate" oninput="syncAllDates(this.value)">
+        </div>
+        <div class="sig-box">
+            <label>Supervised by</label>
+            <div class="sig-line"></div>
+            <label style="margin-top: 5px;">Date & Time</label>
+            <input type="date" id="supervisDate" oninput="syncAllDates(this.value)">
+        </div>
+    </div>
+
+    <div class="signature-row">
+        <div class="sig-box">
+            <label>Patient Signature</label>
+            <div class="sig-line"></div>
+            <label style="margin-top: 5px;">Date & Time</label>
+            <input type="date" id="masterDate" oninput="syncAllDates(this.value)">
+        </div>
+        <div class="sig-box">
+            <label>Witness Signature</label>
+            <div class="sig-line"></div>
+            <label style="margin-top: 5px;">Date & Time</label>
+            <input type="date" id="witnessDate" oninput="syncAllDates(this.value)">
+        </div>
+    </div>
+
+    <div class="action-bar">
+        <button class="btn" onclick="location.href='index.html'" style="background: #7f8c8d; margin-right: 10px;">← Back to Dashboard</button>
+        <button class="btn" onclick="window.print()">Save & Print Form</button>
+    </div>
+</div>
+
+<script>
+    function syncAllDates(val) {
+        document.getElementById('performDate').value = val;
+        document.getElementById('supervisDate').value = val;
+        document.getElementById('masterDate').value = val;
+        document.getElementById('witnessDate').value = val;
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Consent to Anesthesia</title>
+
+<style>
+    body { font-family: Segoe UI, Tahoma, sans-serif; line-height: 1.4; font-size: 13px; color: #333; margin: 30px; background-color: #f4f7f6; }
+    .form-container { max-width: 950px; margin: 0 auto; border: 1px solid #ccc; padding: 30px; background: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    h1 { text-align: center; border-bottom: 2px solid #2c3e50; padding-bottom: 10px; color: #2c3e50; text-transform: uppercase; }
+    .section-title { background: #ecf0f1; padding: 8px; font-weight: bold; margin-top: 20px; border-left: 4px solid #2980b9; text-transform: uppercase; }
+    .grid-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 10px; }
+    .col-span-2 { grid-column: span 2; }
+    .col-span-4 { grid-column: span 4; }
+    label { display: block; font-weight: 600; font-size: 11px; color: #7f8c8d; margin-bottom: 4px; }
+    
+    input[type="text"], input[type="date"], textarea {
+        width: 100%; padding: 8px; border: 1px solid #dcdde1; border-radius: 4px; box-sizing: border-box;
+    }
+
+    .signature-row { display: flex; justify-content: space-between; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; }
+    .sig-box { width: 48%; text-align: center; }
+    .sig-line { border-top: 1px solid #333; margin-top: 30px; padding-top: 5px; font-weight: bold; font-size: 12px; }
+    
+    .action-bar { display: flex; justify-content: center; margin: 40px 0; width: 100%; }
+    .btn { padding: 12px 30px; background: #2980b9; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+    .btn:hover { background: #1f6391; }
+    
+    .consent-box { margin: 20px 0; padding: 15px; background: #fafafa; border-left: 4px solid #2980b9; line-height: 1.7; }
+
+    @media print { .action-bar { display: none; } }
+</style>
+</head>
+
+<body>
+
+<div class="form-container">
+    <h1>Consent to Anesthesia</h1>
+    
+    <div style="text-align: center; margin-bottom: 20px; color: #666; font-size: 12px;">
+        <img src="LORMAlogo.png" style="width: 100px; margin-bottom: 10px;" alt="Lorma Logo">
+        <div>LORMA CANCER INSTITUTE, INC.</div>
+        <div>RADIATION ONCOLOGY DEPARTMENT</div>
+        <div>Carlatan, San Fernando City, La Union</div>
+        <div>Tel. No. (072) 700 0000</div>
+    </div>
+
+    <div class="section-title">Anesthesia Authorization</div>
+
+    <div class="grid-row">
+        <div class="col-span-2"><label>Date</label><input type="date" id="masterDate" oninput="syncDates(this.value)"></div>
+        <div class="col-span-2"></div>
+    </div>
+
+    <div class="consent-box">
+        <p style="text-align: justify;">
+            To whom it may concern:
+        </p>
+        <p style="text-align: justify; text-indent: 20px;">
+            I/We, the undersigned, hereby authorize Dr. <input type="text" style="width: 200px; padding: 4px; border: 1px solid #dcdde1; border-radius: 3px;">, Anesthesiologist, to administer anesthesia as deemed necessary for my/our medical treatment.
+        </p>
+    </div>
+
+    <div class="section-title">Patient Information</div>
+
+    <div class="grid-row">
+        <div class="col-span-4"><label>Patient's Name (Last Name, Suffix, First Name, Middle Name)</label><input type="text"></div>
+        <div class="col-span-2"><label>Date of Birth</label><input type="date"></div>
+        <div><label>Age</label><input type="text"></div>
+        <div><label>Sex</label><input type="text"></div>
+        <div><label>IDNum</label><input type="text"></div>
+        <div><label>Hospital Number</label><input type="text"></div>
+        <div class="col-span-2"><label>Diagnosis / Site</label><input type="text"></div>
+    </div>
+
+    <div class="section-title">Physician Information</div>
+
+    <div class="grid-row">
+        <div class="col-span-4"><label>Radiation Oncologist / Attending Physician</label><input type="text"></div>
+    </div>
+
+    <div class="section-title">Authorization & Signatures</div>
+
+    <div class="grid-row">
+        <div class="col-span-4"><label>Patient Signature</label><input type="text"></div>
+    </div>
+
+    <div style="margin-top: 20px; padding: 15px; background: #f9f9f9; border-radius: 4px;">
+        <strong style="color: #2980b9;">If patient is a minor or unable to sign:</strong>
+        <div class="grid-row" style="margin-top: 10px;">
+            <div class="col-span-2"><label>Guardian/Representative Name</label><input type="text"></div>
+            <div class="col-span-2"><label>Relationship</label><input type="text"></div>
+            <div class="col-span-4"><label>Guardian/Representative Signature</label><input type="text"></div>
+        </div>
+    </div>
+
+    <div class="signature-row">
+        <div class="sig-box">
+            <label>Witness 1 Signature</label>
+            <div class="sig-line"></div>
+            <label style="margin-top: 5px;">Date</label>
+            <input type="date" id="witness1Date">
+        </div>
+        <div class="sig-box">
+            <label>Witness 2 Signature</label>
+            <div class="sig-line"></div>
+            <label style="margin-top: 5px;">Date</label>
+            <input type="date" id="witness2Date">
+        </div>
+    </div>
+
+    <div class="action-bar">
+        <button class="btn" onclick="location.href='index.html'" style="background: #7f8c8d; margin-right: 10px;">← Back to Dashboard</button>
+        <button class="btn" onclick="window.print()">Save & Print Form</button>
+    </div>
+</div>
+
+<script>
+    function syncDates(val) {
+        document.getElementById('witness1Date').value = val;
+        document.getElementById('witness2Date').value = val;
+    }
+</script>
+
+</body>
+</html>

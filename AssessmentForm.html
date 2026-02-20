@@ -1,0 +1,242 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Initial Assessment Form</title>
+    <style>
+        body { font-family: Segoe UI, Tahoma, sans-serif; line-height: 1.4; font-size: 13px; color: #333; margin: 30px; background-color: #f4f7f6; }
+        .form-container { max-width: 950px; margin: 0 auto; border: 1px solid #ccc; padding: 30px; background: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1 { text-align: center; border-bottom: 2px solid #2c3e50; padding-bottom: 10px; color: #2c3e50; text-transform: uppercase; }
+        .section-title { background: #ecf0f1; padding: 8px; font-weight: bold; margin-top: 20px; border-left: 4px solid #2980b9; text-transform: uppercase; }
+        .grid-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 10px; }
+        .col-span-2 { grid-column: span 2; }
+        .col-span-4 { grid-column: span 4; }
+        label { display: block; font-weight: 600; font-size: 11px; color: #7f8c8d; margin-bottom: 4px; }
+        
+        input[type="text"], input[type="number"], input[type="date"], input[type="datetime-local"], textarea {
+            width: 100%; padding: 8px; border: 1px solid #dcdde1; border-radius: 4px; box-sizing: border-box;
+        }
+
+        .checkbox-group { display: flex; flex-wrap: wrap; gap: 10px; padding: 5px 0; }
+        .check-item { display: flex; align-items: center; gap: 6px; font-size: 12px; }
+        
+        /* Complete Systems Grid */
+        .systems-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-top: 15px; }
+        .system-card { border: 1px solid #eee; padding: 12px; border-radius: 6px; background: #fafafa; }
+        .system-name { font-weight: bold; color: #2980b9; margin-bottom: 8px; display: block; border-bottom: 1px solid #ddd; font-size: 11px; }
+        
+        /* Signature Area */
+        .signature-row { display: flex; justify-content: space-between; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; }
+        .sig-box { width: 48%; text-align: center; }
+        .sig-line { border-top: 1px solid #333; margin-top: 30px; padding-top: 5px; font-weight: bold; font-size: 12px; }
+        
+        /* Centered Action Bar */
+        .action-bar { display: flex; justify-content: center; margin: 40px 0; width: 100%; }
+        .btn { padding: 12px 30px; background: #2980b9; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .btn:hover { background: #1f6391; }
+
+        @media print { .action-bar { display: none; } }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h1>Initial Assessment Form</h1>
+
+    <div class="grid-row">
+        <div class="col-span-2"><label>Name</label><input type="text"></div>
+        <div><label>Age</label><input type="number"></div>
+        <div><label>Sex</label><input type="text"></div>
+        <div class="col-span-2">
+            <label>Date & Time of Assessment (Master)</label>
+            <input type="datetime-local" id="masterDate" oninput="syncDates(this.value)">
+        </div>
+        <div><label>IDNum</label><input type="text"></div>
+        <div><label>Hospital Number</label><input type="text"></div>
+        <div class="col-span-4"><label>Home Address</label><input type="text"></div>
+    </div>
+
+    <div class="section-title">Clinical History & Vitals</div>
+    <div class="grid-row">
+        <div class="col-span-4"><label>Chief Complaint</label><textarea rows="1"></textarea></div>
+        <div class="col-span-2">
+            <label>Past Medical History</label>
+            <div class="checkbox-group">
+                <div class="check-item"><input type="checkbox"> DM</div>
+                <div class="check-item"><input type="checkbox"> HTN</div>
+                <div class="check-item">Other: <input type="text" style="width: 100px;"></div>
+            </div>
+        </div>
+        <div><label>Temp ()</label><input type="text"></div>
+        <div><label>BP (mm/Hg)</label><input type="text"></div>
+    </div>
+
+    <div class="section-title">Present Problem: Review of Systems</div>
+    <div class="systems-grid">
+        <div class="system-card">
+            <span class="system-name">HEENT</span>
+            <div class="check-item"><input type="checkbox"> Hoarseness</div>
+            <div class="check-item"><input type="checkbox"> Loose tooth/dentures</div>
+            <div class="check-item"><input type="checkbox"> Obstruction/Snoring</div>
+            <div class="check-item"><input type="checkbox"> Epistaxis</div>
+            <input type="text" placeholder="Others/Meds" style="margin-top:5px">
+        </div>
+
+        <div class="system-card">
+            <span class="system-name">RESPIRATORY</span>
+            <div class="check-item"><input type="checkbox"> Cough</div>
+            <div class="check-item"><input type="checkbox"> Dyspnea</div>
+            <div class="check-item"><input type="checkbox"> Asthma</div>
+            <div class="check-item"><input type="checkbox"> COPD</div>
+            <input type="text" placeholder="Others/Meds" style="margin-top:5px">
+        </div>
+
+        <div class="system-card">
+            <span class="system-name">CARDIOVASCULAR</span>
+            <div class="check-item"><input type="checkbox"> Chest Pains</div>
+            <div class="check-item"><input type="checkbox"> Hypertension</div>
+            <div class="check-item"><input type="checkbox"> Edema</div>
+            <div class="check-item"><input type="checkbox"> Easy Fatigability</div>
+            <input type="text" placeholder="Others/Meds" style="margin-top:5px">
+        </div>
+
+        <div class="system-card">
+            <span class="system-name">NEUROLOGIC</span>
+            <div class="check-item"><input type="checkbox"> Stroke</div>
+            <div class="check-item"><input type="checkbox"> Paralysis</div>
+            <div class="check-item"><input type="checkbox"> Seizure</div>
+            <input type="text" placeholder="Others/Meds" style="margin-top:5px">
+        </div>
+
+        <div class="system-card">
+            <span class="system-name">MUSCULOSKELETAL</span>
+            <div class="check-item"><input type="checkbox"> Arthritis</div>
+            <div class="check-item"><input type="checkbox"> Muscle Weakness</div>
+            <div class="check-item"><input type="checkbox"> Fractures</div>
+            <input type="text" placeholder="Others/Meds" style="margin-top:5px">
+        </div>
+
+        <div class="system-card">
+            <span class="system-name">ENDOCRINE</span>
+            <div class="check-item"><input type="checkbox"> DM</div>
+            <div class="check-item"><input type="checkbox"> Hyperthyroidism</div>
+            <div class="check-item"><input type="checkbox"> Hypothyroidism</div>
+            <input type="text" placeholder="Others/Meds" style="margin-top:5px">
+        </div>
+
+        <div class="system-card">
+            <span class="system-name">HEMATOLOGIC</span>
+            <div class="check-item"><input type="checkbox"> Anemia</div>
+            <div class="check-item"><input type="checkbox"> Leukemia</div>
+            <div class="check-item"><input type="checkbox"> Bleeding tendencies</div>
+            <input type="text" placeholder="Others/Meds" style="margin-top:5px">
+        </div>
+
+        <div class="system-card">
+            <span class="system-name">GENITOURINARY</span>
+            <div class="check-item"><input type="checkbox"> Nocturia</div>
+            <div class="check-item"><input type="checkbox"> Dysuria</div>
+            <div class="check-item"><input type="checkbox"> Renal Stones</div>
+            <input type="text" placeholder="Others/Meds" style="margin-top:5px">
+        </div>
+
+        <div class="system-card">
+            <span class="system-name">GASTROINTESTINAL</span>
+            <div class="check-item"><input type="checkbox"> Nausea/Vomiting</div>
+            <div class="check-item"><input type="checkbox"> Hepatitis</div>
+            <div class="check-item"><input type="checkbox"> Weight loss</div>
+            <input type="text" placeholder="Others/Meds" style="margin-top:5px">
+        </div>
+    </div>
+
+    <div class="signature-row">
+        <div class="sig-box">
+            <label>RN Signature Image</label>
+            <div style="display: flex; gap: 10px; align-items: center; margin: 8px 0;">
+                <input type="file" id="rnSignatureFile" accept="image/*">
+                <button type="button" onclick="clearRNSignature()" style="padding: 6px 12px; background: #e0e0e0; border: none; border-radius: 3px; cursor: pointer; font-size: 11px; white-space: nowrap;">Clear</button>
+            </div>
+            <div id="rnSignaturePreview" style="margin: 10px 0; max-width: 200px; max-height: 100px;"></div>
+            <label>Name (Print)</label>
+            <input type="text" id="rnName" style="margin-bottom: 8px;">
+            <label>Date & Time</label>
+            <input type="datetime-local" id="rnDate">
+        </div>
+        <div class="sig-box">
+            <label>Radiation Oncologist Signature Image</label>
+            <div style="display: flex; gap: 10px; align-items: center; margin: 8px 0;">
+                <input type="file" id="mdSignatureFile" accept="image/*">
+                <button type="button" onclick="clearMDSignature()" style="padding: 6px 12px; background: #e0e0e0; border: none; border-radius: 3px; cursor: pointer; font-size: 11px; white-space: nowrap;">Clear</button>
+            </div>
+            <div id="mdSignaturePreview" style="margin: 10px 0; max-width: 200px; max-height: 100px;"></div>
+            <label>Name (Print)</label>
+            <input type="text" id="mdName" style="margin-bottom: 8px;">
+            <label>Date & Time</label>
+            <input type="datetime-local" id="mdDate">
+        </div>
+    </div>
+
+    <div class="action-bar">
+        <button class="btn" onclick="location.href='index.html'" style="background: #7f8c8d; margin-right: 10px;"> Back to Dashboard</button>
+        <button class="btn" onclick="window.print()">Save & Print Form</button>
+    </div>
+</div>
+
+<script>
+    function syncDates(val) {
+        if (val) {
+            document.getElementById('rnDate').value = val;
+            document.getElementById('mdDate').value = val;
+        }
+    }
+
+    function clearRNSignature() {
+        document.getElementById('rnSignatureFile').value = '';
+        document.getElementById('rnSignaturePreview').innerHTML = '';
+    }
+
+    function clearMDSignature() {
+        document.getElementById('mdSignatureFile').value = '';
+        document.getElementById('mdSignaturePreview').innerHTML = '';
+    }
+
+    // Handle RN signature image upload
+    document.getElementById('rnSignatureFile').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const img = document.createElement('img');
+                img.src = event.target.result;
+                img.style.maxWidth = '100%';
+                img.style.maxHeight = '100px';
+                img.style.borderRadius = '4px';
+                document.getElementById('rnSignaturePreview').innerHTML = '';
+                document.getElementById('rnSignaturePreview').appendChild(img);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // Handle MD signature image upload
+    document.getElementById('mdSignatureFile').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const img = document.createElement('img');
+                img.src = event.target.result;
+                img.style.maxWidth = '100%';
+                img.style.maxHeight = '100px';
+                img.style.borderRadius = '4px';
+                document.getElementById('mdSignaturePreview').innerHTML = '';
+                document.getElementById('mdSignaturePreview').appendChild(img);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Companion / Watcher Waiver Form</title>
+
+<style>
+    body { font-family: Segoe UI, Tahoma, sans-serif; line-height: 1.4; font-size: 13px; color: #333; margin: 30px; background-color: #f4f7f6; }
+    .form-container { max-width: 950px; margin: 0 auto; border: 1px solid #ccc; padding: 30px; background: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    h1 { text-align: center; border-bottom: 2px solid #2c3e50; padding-bottom: 10px; color: #2c3e50; text-transform: uppercase; }
+    h2 { text-align: center; color: #2c3e50; margin-top: 20px; }
+    h3 { text-align: center; color: #555; margin-top: 0; font-weight: normal; }
+    .section-title { background: #ecf0f1; padding: 8px; font-weight: bold; margin-top: 20px; border-left: 4px solid #2980b9; text-transform: uppercase; }
+    .grid-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 10px; }
+    .col-span-2 { grid-column: span 2; }
+    .col-span-4 { grid-column: span 4; }
+    label { display: block; font-weight: 600; font-size: 11px; color: #7f8c8d; margin-bottom: 4px; }
+    
+    input[type="text"], input[type="number"], input[type="date"], input[type="datetime-local"], textarea {
+        width: 100%; padding: 8px; border: 1px solid #dcdde1; border-radius: 4px; box-sizing: border-box;
+    }
+
+    .signature-row { display: flex; justify-content: space-between; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; }
+    .sig-box { width: 48%; text-align: center; }
+    .sig-line { border-top: 1px solid #333; margin-top: 30px; padding-top: 5px; font-weight: bold; font-size: 12px; }
+    
+    .action-bar { display: flex; justify-content: center; margin: 40px 0; width: 100%; }
+    .btn { padding: 12px 30px; background: #2980b9; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+    .btn:hover { background: #1f6391; }
+
+    @media print { .action-bar { display: none; } }
+</style>
+</head>
+
+<body>
+
+<div class="header" style="text-align: center;">
+    <img src="LORMAlogo.png" style="width: 120px; margin-bottom: 10px;" alt="Lorma Logo">
+    <h3>LORMA CANCER INSTITUTE, INC.</h3>
+    <div>RADIATION ONCOLOGY DEPARTMENT</div>
+    <div>Carlatan, San Fernando City, La Union</div>
+    <div>Tel. No. (072) 700 0000</div>
+</div>
+
+<h2>COMPANION / WATCHER WAIVER FORM</h2>
+<h3>General Radiation Risk</h3>
+
+<div class="section">
+    <p style="text-align: center;">
+        As a routine part of our operation, all companions/watchers are informed 
+        that there is a possibility of increased vulnerability to radiation within the facility.
+    </p>
+</div>
+
+<div class="section">
+
+    <div class="half">
+        <strong>Patient Name:</strong>
+        <input type="text" class="line-input">
+    </div>
+
+    <div class="half">
+        <strong>Date:</strong>
+        <input type="date" class="line-input" id="masterDate" oninput="syncDates(this.value)">
+    </div>
+
+</div>
+
+<div class="section">
+
+    <div>
+        <strong>Name of Companion / Watcher:</strong>
+        <input type="text" class="line-input">
+    </div>
+
+</div>
+
+<div class="section">
+
+    <div class="half">
+        <strong>Contact No.:</strong>
+        <input type="text" class="line-input">
+    </div>
+
+    <div class="half">
+        <strong>Relationship to Patient:</strong>
+        <input type="text" class="line-input">
+    </div>
+
+</div>
+
+<div class="section">
+
+    <p>
+        I, <input type="text" style="width:300px; border:none; border-bottom:1px solid black; outline:none;"> 
+        guarantee that I have been fully informed of the greater risks of radiation exposure when staying within 
+        the <strong>RADIATION ONCOLOGY AREA</strong>. If the chance of exposure is in question, 
+        I have been given the opportunity to exit from the premises or take the risk of accompanying the patient. 
+        I hereby release <strong>LORMA CANCER INSTITUTE, INC.</strong> of any liability.
+    </p>
+
+</div>
+
+<div class="signature-row">
+
+    <div class="signature-block">
+        <div class="signature-line">
+            Companion’s Signature
+        </div>
+        <label style="margin-top: 10px;">Date</label>
+        <input type="date" id="companionDate">
+    </div>
+
+    <div class="signature-block">
+        <div class="signature-line">
+            Witness Signature
+        </div>
+        <label style="margin-top: 10px;">Date</label>
+        <input type="date" id="witnessDate">
+    </div>
+
+</div>
+
+<div class="action-bar" style="display: flex; justify-content: center; margin: 40px 0; width: 100%; gap: 10px;">
+    <button class="btn" onclick="location.href='index.html'" style="background: #7f8c8d;">← Back to Dashboard</button>
+    <button class="btn" onclick="window.print()">Save & Print Form</button>
+</div>
+
+<script>
+    function syncDates(val) {
+        document.getElementById('companionDate').value = val;
+        document.getElementById('witnessDate').value = val;
+    }
+</script>
+
+</body>
+</html>

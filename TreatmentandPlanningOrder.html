@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Treatment Planning Order</title>
+
+<style>
+    body { font-family: Segoe UI, Tahoma, sans-serif; line-height: 1.4; font-size: 13px; color: #333; margin: 30px; background-color: #f4f7f6; }
+    .form-container { max-width: 1050px; margin: 0 auto; border: 1px solid #ccc; padding: 30px; background: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    h1 { text-align: center; border-bottom: 2px solid #2c3e50; padding-bottom: 10px; color: #2c3e50; text-transform: uppercase; }
+    .section-title { background: #ecf0f1; padding: 8px; font-weight: bold; margin-top: 20px; border-left: 4px solid #2980b9; text-transform: uppercase; }
+    .grid-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 10px; }
+    .col-span-2 { grid-column: span 2; }
+    .col-span-3 { grid-column: span 3; }
+    .col-span-4 { grid-column: span 4; }
+    label { display: block; font-weight: 600; font-size: 11px; color: #7f8c8d; margin-bottom: 4px; }
+    
+    input[type="text"], input[type="date"], textarea, select {
+        width: 100%; padding: 8px; border: 1px solid #dcdde1; border-radius: 4px; box-sizing: border-box;
+    }
+
+    .checkbox-group { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+    .check-item { display: flex; align-items: center; gap: 6px; }
+    .check-item input[type="checkbox"] { cursor: pointer; width: 16px; height: 16px; }
+    .check-item label { margin: 0; display: inline; cursor: pointer; font-weight: 400; }
+
+    table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+    th { background: #ecf0f1; border: 1px solid #bdc3c7; padding: 8px; font-weight: bold; font-size: 11px; color: #2c3e50; text-align: center; }
+    td { border: 1px solid #dcdde1; padding: 6px; font-size: 12px; }
+    td input, td textarea, td select { border: 1px solid #e0e0e0; padding: 4px; font-size: 11px; width: 100%; }
+
+    .signature-row { display: flex; justify-content: space-between; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; }
+    .sig-box { width: 48%; text-align: center; }
+    .sig-line { border-top: 1px solid #333; margin-top: 30px; padding-top: 5px; font-weight: bold; font-size: 12px; }
+
+    .action-bar { display: flex; justify-content: center; margin: 40px 0; width: 100%; }
+    .btn { padding: 12px 30px; background: #2980b9; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+    .btn:hover { background: #1f6391; }
+
+    @media print { 
+        .action-bar { display: none; }
+        body { margin: 10px; }
+        .form-container { max-width: 100%; margin: 0; padding: 15px; box-shadow: none; border: none; }
+        h1 { padding-bottom: 5px; margin-bottom: 5px; font-size: 16px; }
+        .section-title { padding: 4px; margin-top: 8px; margin-bottom: 4px; font-size: 11px; }
+        img { width: 60px !important; margin-bottom: 5px !important; }
+        .grid-row { gap: 10px; }
+        input, textarea, select { font-size: 10px; padding: 4px; }
+        label { font-size: 10px; }
+        table { font-size: 9px; }
+        th, td { padding: 3px; font-size: 9px; }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="form-container">
+    <h1>Treatment Planning Order</h1>
+    
+    <div style="text-align: center; margin-bottom: 20px; color: #666; font-size: 12px;">
+        <img src="LORMAlogo.png" style="width: 100px; margin-bottom: 10px;" alt="Lorma Logo">
+        <div>LORMA CANCER INSTITUTE, INC.</div>
+        <div>RADIATION ONCOLOGY DEPARTMENT</div>
+        <div>Carlatan, San Fernando City, La Union</div>
+        <div>Tel. No. (072) 700 0000</div>
+    </div>
+
+    <div class="section-title">Patient Information</div>
+    <div class="grid-row">
+        <div class="col-span-4"><label>Patient's Name (Last, Suffix, First, Middle)</label><input type="text"></div>
+        <div><label>IDNum</label><input type="text"></div>
+        <div><label>Hospital Number</label><input type="text"></div>
+        <div class="col-span-2"><label>Age / Sex</label><input type="text"></div>
+        <div class="col-span-2"><label>Birthdate</label><input type="date"></div>
+        <div class="col-span-4"><label>Diagnosis</label><input type="text"></div>
+    </div>
+
+    <div class="section-title">Treatment Technique</div>
+    <div class="checkbox-group">
+        <div class="check-item">
+            <input type="checkbox" id="2d">
+            <label for="2d">2D (Conventional)</label>
+        </div>
+        <div class="check-item">
+            <input type="checkbox" id="3d">
+            <label for="3d">3D (Forward)</label>
+        </div>
+        <div class="check-item">
+            <input type="checkbox" id="imrt">
+            <label for="imrt">IMRT</label>
+        </div>
+        <div class="check-item">
+            <input type="checkbox" id="igrt">
+            <label for="igrt">IGRT</label>
+        </div>
+        <div class="check-item">
+            <input type="checkbox" id="vmat">
+            <label for="vmat">VMAT</label>
+        </div>
+    </div>
+
+    <div class="section-title">Dose Specifications</div>
+    <div class="grid-row">
+        <div class="col-span-2"><label>Total Dose (Gy)</label><input type="text"></div>
+        <div class="col-span-2"><label>Dose per Fraction (Gy)</label><input type="text"></div>
+        <div class="col-span-2"><label>Number of Fractions</label><input type="text"></div>
+        <div class="col-span-2"></div>
+    </div>
+
+    <div style="margin-top: 10px;">
+        <div class="checkbox-group">
+            <div class="check-item">
+                <input type="checkbox" id="sib">
+                <label for="sib">SIB (Simultaneous Integrated Boost)</label>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" id="seq">
+                <label for="seq">SEQ (Sequential Boost)</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-title">Prescription Worksheet - Target Volume</div>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 70%;">Target Volume</th>
+                <th style="width: 30%;">Dose (Gy)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td><input type="text" style="border: none;"></td><td><input type="text" style="border: none;"></td></tr>
+            <tr><td><input type="text" style="border: none;"></td><td><input type="text" style="border: none;"></td></tr>
+            <tr><td><input type="text" style="border: none;"></td><td><input type="text" style="border: none;"></td></tr>
+            <tr><td><input type="text" style="border: none;"></td><td><input type="text" style="border: none;"></td></tr>
+            <tr><td><input type="text" style="border: none;"></td><td><input type="text" style="border: none;"></td></tr>
+            <tr><td><input type="text" style="border: none;"></td><td><input type="text" style="border: none;"></td></tr>
+            <tr><td><input type="text" style="border: none;"></td><td><input type="text" style="border: none;"></td></tr>
+        </tbody>
+    </table>
+
+    <div class="section-title">Prescription Worksheet - Organs at Risk</div>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 70%;">Normal Organs / Organs at Risk</th>
+                <th style="width: 30%;">Dose Constraint (Gy)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td><input type="text" style="border: none;"></td><td><input type="text" style="border: none;"></td></tr>
+            <tr><td><input type="text" style="border: none;"></td><td><input type="text" style="border: none;"></td></tr>
+            <tr><td><input type="text" style="border: none;"></td><td><input type="text" style="border: none;"></td></tr>
+            <tr><td><input type="text" style="border: none;"></td><td><input type="text" style="border: none;"></td></tr>
+            <tr><td><input type="text" style="border: none;"></td><td><input type="text" style="border: none;"></td></tr>
+            <tr><td><input type="text" style="border: none;"></td><td><input type="text" style="border: none;"></td></tr>
+            <tr><td><input type="text" style="border: none;"></td><td><input type="text" style="border: none;"></td></tr>
+            <tr><td><input type="text" style="border: none;"></td><td><input type="text" style="border: none;"></td></tr>
+            <tr><td><input type="text" style="border: none;"></td><td><input type="text" style="border: none;"></td></tr>
+            <tr><td><input type="text" style="border: none;"></td><td><input type="text" style="border: none;"></td></tr>
+        </tbody>
+    </table>
+
+    <div class="section-title">Physician Order</div>
+    <div class="grid-row">
+        <div class="col-span-4"><label>Additional Notes / Comments</label><textarea style="height: 60px;"></textarea></div>
+    </div>
+
+    <div class="signature-row">
+        <div class="sig-box">
+            <label>Radiation Oncologist Signature</label>
+            <div class="sig-line"></div>
+            <label style="margin-top: 5px;">Name & Credentials</label>
+            <input type="text" style="margin-top: 5px;">
+        </div>
+        <div class="sig-box">
+            <label>Date & Time</label>
+            <input type="date" style="margin-top: 8px;">
+            <input type="time" style="margin-top: 5px;">
+        </div>
+    </div>
+
+    <div class="action-bar">
+        <button class="btn" onclick="location.href='index.html'" style="background: #7f8c8d; margin-right: 10px;">← Back to Dashboard</button>
+        <button class="btn" onclick="window.print()">Save & Print Form</button>
+    </div>
+</div>
+
+</body>
+</html>

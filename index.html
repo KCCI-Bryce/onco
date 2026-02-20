@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Radiation Oncology Forms - DASHBOARD </title>
+
+<style>
+    body { font-family: Segoe UI, Tahoma, sans-serif; line-height: 1.4; font-size: 13px; color: #333; margin: 30px; background-color: #f4f7f6; }
+    .form-container { max-width: 1200px; margin: 0 auto; border: 1px solid #ccc; padding: 30px; background: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    h1 { text-align: center; border-bottom: 2px solid #2c3e50; padding-bottom: 10px; color: #2c3e50; text-transform: uppercase; margin-bottom: 30px; }
+    .section-title { background: #ecf0f1; padding: 8px; font-weight: bold; margin-top: 25px; margin-bottom: 15px; border-left: 4px solid #2980b9; text-transform: uppercase; }
+    
+    .forms-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 15px; }
+    .form-card { border: 1px solid #dcdde1; border-radius: 6px; padding: 20px; background: #fafafa; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    .form-card:hover { box-shadow: 0 4px 12px rgba(41, 128, 185, 0.15); transform: translateY(-2px); border-color: #2980b9; }
+    
+    .form-card h3 { color: #2c3e50; margin-top: 0; margin-bottom: 10px; font-size: 14px; }
+    .form-card p { color: #7f8c8d; font-size: 12px; margin: 8px 0; line-height: 1.5; }
+    .form-card .form-type { display: inline-block; background: #2980b9; color: white; padding: 3px 8px; border-radius: 3px; font-size: 10px; margin-bottom: 10px; }
+    
+    .form-link { display: inline-block; margin-top: 12px; padding: 10px 20px; background: #2980b9; color: white; text-decoration: none; border-radius: 4px; font-weight: 600; font-size: 12px; transition: background 0.3s ease; }
+    .form-link:hover { background: #1f6391; text-decoration: none; }
+    
+    .workflow-section { margin-top: 20px; padding: 15px; background: #ecf0f1; border-radius: 4px; border-left: 4px solid #2980b9; }
+    .workflow-section p { font-size: 12px; color: #555; margin: 5px 0; }
+    
+    .logo-header { text-align: center; margin-bottom: 25px; }
+    .logo-header img { width: 100px; margin-bottom: 15px; }
+    .logo-header .header-text { color: #666; font-size: 12px; }
+    .logo-header .header-text div { margin: 3px 0; }
+    
+
+    .stat-box { padding: 15px; background: #f0f8ff; border-left: 4px solid #2980b9; border-radius: 4px; }
+    .stat-box .stat-number { font-size: 24px; font-weight: bold; color: #2980b9; }
+    .stat-box .stat-label { font-size: 12px; color: #7f8c8d; margin-top: 5px; }
+
+    @media print { 
+        .form-link { display: none; }
+        body { margin: 10px; }
+        .form-container { max-width: 100%; margin: 0; padding: 15px; box-shadow: none; border: none; }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="form-container">
+    <div class="logo-header">
+        <img src="LORMAlogo.png" alt="Lorma Logo">
+        <div class="header-text">
+            <div><strong>LORMA CANCER INSTITUTE, INC.</strong></div>
+            <div>RADIATION ONCOLOGY DEPARTMENT</div>
+            <div>Carlatan, San Fernando City, La Union</div>
+            <div>Tel. No. (072) 700 0000</div>
+        </div>
+    </div>
+
+    <h1>Radiation Oncology Forms  test </h1>
+
+
+
+    <div class="workflow-section">
+        <p><strong>📋 Suggested Workflow:</strong></p>
+        <p>1. <strong>Radio Theraphy Chart</strong> → Initial patient profile</p>
+        <p>2. <strong>Assessment Form</strong> → Patient clinical assessment</p>
+        <p>3. <strong>Consent to Anesthesia</strong> → Treatment authorization</p>
+        <p>4. <strong>CT Simulation</strong> → CT simulation planning</p>
+        <p>5. <strong>Treatment andPlanningOrder</strong> → Treatment prescription</p>
+        <p>6. <strong>Patient Vital Sheet</strong> → Monitor vital signs</p>
+        <p>7. <strong>RadTheraphy Clinical Record</strong> → Clinical progress notes</p>
+    </div>
+
+    <div class="section-title">Patient Intake & Profile Forms</div>
+    <div class="forms-grid">
+        <div class="form-card">
+            <span class="form-type">PATIENT PROFILE</span>
+            <h3>Radiotherapy Chart</h3>
+            <p>Patient profile form with demographic information, emergency contacts, and treatment type selection. Includes 2x2 photo upload capability.</p>
+            <a href="RadioTheraphyChart.html" class="form-link">➜ Open Form</a>
+        </div>
+        
+        <div class="form-card">
+            <span class="form-type">ASSESSMENT</span>
+            <h3>Initial Assessment Form</h3>
+            <p>Comprehensive clinical history and review of systems. Includes vital signs and past medical history checkboxes.</p>
+            <a href="AssessmentForm.html" class="form-link">➜ Open Form</a>
+        </div>
+        
+        <div class="form-card">
+            <span class="form-type">COMPANION SAFETY</span>
+            <h3>Companion/Watcher Waiver</h3>
+            <p>Radiation exposure waiver form for patient companions and watchers. Includes informed consent and signature fields.</p>
+            <a href="CompanionorWatcher.html" class="form-link">➜ Open Form</a>
+        </div>
+    </div>
+
+    <div class="section-title">Treatment Planning & Authorization Forms</div>
+    <div class="forms-grid">
+        <div class="form-card">
+            <span class="form-type">AUTHORIZATION</span>
+            <h3>Consent to Anesthesia</h3>
+            <p>Anesthesia authorization and consent form with patient and witness signature requirements.</p>
+            <a href="ConsenttoAnesthesia.html" class="form-link">➜ Open Form</a>
+        </div>
+        
+        <div class="form-card">
+            <span class="form-type">PLANNING</span>
+            <h3>CT Simulation & Planning</h3>
+            <p>CT simulation order form with treatment technique selection, scan specifications, and consent documentation.</p>
+            <a href="CTSimulation.html" class="form-link">➜ Open Form</a>
+        </div>
+        
+        <div class="form-card">
+            <span class="form-type">PRESCRIPTION</span>
+            <h3>Treatment Planning Order</h3>
+            <p>Treatment prescription worksheet with target volumes, organ constraints, dose specifications, and fractionation details.</p>
+            <a href="TreatmentandPlanningOrder.html" class="form-link">➜ Open Form</a>
+        </div>
+    </div>
+
+    <div class="section-title">Patient Monitoring & Clinical Records</div>
+    <div class="forms-grid">
+        <div class="form-card">
+            <span class="form-type">MONITORING</span>
+            <h3>Patient Vital Signs Sheet</h3>
+            <p>Daily vital signs tracking table including BP, temperature, O₂ saturation, heart rate, respiratory rate, and pain scale.</p>
+            <a href="PatientVitalSheet.html" class="form-link">➜ Open Form</a>
+        </div>
+        
+        <div class="form-card">
+            <span class="form-type">CLINICAL RECORD</span>
+            <h3>Radiotherapy Clinical Record</h3>
+            <p>Comprehensive clinical record with diagnosis info, disease status, clinical history, treatment technique, and progress notes table.</p>
+            <a href="RadTheraphyClinicalRecord.html" class="form-link">➜ Open Form</a>
+        </div>
+        
+        <div class="form-card">
+            <span class="form-type">REFERRAL</span>
+            <h3>Two-Way Health Referral Form</h3>
+            <p>Inter-facility health referral form with vital signs, chief complaint, and back referral documentation.</p>
+            <a href="InpatientTwoWay.html" class="form-link">➜ Open Form</a>
+        </div>
+    </div>
+
+    <div class="workflow-section" style="margin-top: 30px;">
+        <p><strong>💡 Tips:</strong></p>
+        <p>• All forms support printing (Ctrl+P or use Save & Print button)</p>
+        <p>• Forms auto-sync related date fields for consistency</p>
+        <p>• Patient photo uploads are supported in Radiotherapy Chart</p>
+        <p>• All forms use IDNum and Hospital Number fields</p>
+        <p>• Professional styling ensures clean print output</p>
+    </div>
+
+</div>
+
+</body>
+</html>

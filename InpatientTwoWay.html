@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Two-Way Health Referral Form</title>
+    <style>
+        body { font-family: Segoe UI, Tahoma, sans-serif; line-height: 1.4; font-size: 13px; color: #333; margin: 30px; background-color: #f4f7f6; }
+        .form-container { max-width: 950px; margin: 0 auto; border: 1px solid #ccc; padding: 30px; background: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1 { text-align: center; border-bottom: 2px solid #2c3e50; padding-bottom: 10px; color: #2c3e50; text-transform: uppercase; }
+        .section-title { background: #ecf0f1; padding: 8px; font-weight: bold; margin-top: 20px; border-left: 4px solid #2980b9; text-transform: uppercase; }
+        .grid-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 10px; }
+        .col-span-2 { grid-column: span 2; }
+        .col-span-4 { grid-column: span 4; }
+        label { display: block; font-weight: 600; font-size: 11px; color: #7f8c8d; margin-bottom: 4px; }
+        
+        input[type="text"], input[type="date"], input[type="datetime-local"], textarea {
+            width: 100%; padding: 8px; border: 1px solid #dcdde1; border-radius: 4px; box-sizing: border-box;
+        }
+
+        .checkbox-group { display: flex; gap: 20px; padding: 5px 0; }
+        .check-item { display: flex; align-items: center; gap: 6px; font-size: 12px; }
+        
+        .signature-row { display: flex; justify-content: space-between; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; }
+        .sig-box { width: 48%; text-align: center; }
+        .sig-line { border-top: 1px solid #333; margin-top: 30px; padding-top: 5px; font-weight: bold; font-size: 12px; }
+        
+        .action-bar { display: flex; justify-content: center; margin: 40px 0; width: 100%; }
+        .btn { padding: 12px 30px; background: #2980b9; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .btn:hover { background: #1f6391; }
+
+        .vital-signs { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 8px; }
+        .vital-item { flex: 1; min-width: 120px; }
+        .vital-item label { font-size: 10px; }
+        .vital-item input { width: 100%; }
+
+        @media print { 
+            .action-bar { display: none; }
+            body { margin: 10px; }
+            .form-container { max-width: 100%; margin: 0; padding: 15px; box-shadow: none; border: none; }
+            h1 { padding-bottom: 5px; margin-bottom: 5px; font-size: 16px; }
+            .section-title { padding: 4px; margin-top: 8px; margin-bottom: 4px; font-size: 11px; }
+            .grid-row { gap: 8px; margin-top: 5px; }
+            label { font-size: 10px; margin-bottom: 2px; }
+            input, textarea { padding: 4px; font-size: 11px; }
+            .signature-row { margin-top: 20px; padding-top: 10px; }
+            .sig-box { width: 48%; }
+            .sig-line { margin-top: 15px; }
+            img { width: 60px !important; margin-bottom: 5px !important; }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="form-container">
+    <h1>Two-Way Health Referral Form</h1>
+    
+    <div style="text-align: center; margin-bottom: 20px; color: #666; font-size: 12px;">
+        <img src="LORMAlogo.png" style="width: 100px; margin-bottom: 10px;" alt="Lorma Logo">
+        <div>LORMA CANCER INSTITUTE, INC.</div>
+        <div>RADIATION ONCOLOGY DEPARTMENT</div>
+        <div>Carlatan, San Fernando City, La Union</div>
+        <div>Tel. No. (072) 700 0000</div>
+    </div>
+
+    <div class="section-title">Referral Information</div>
+    
+    <div class="grid-row">
+        <div class="col-span-4"><label>Name of Facility & Address</label><input type="text"></div>
+        <div class="col-span-2"><label>Tel. No.</label><input type="text"></div>
+        <div class="col-span-2"><label>Email Address</label><input type="text"></div>
+        <div class="col-span-2"><label>Date & Time of Referral</label><input type="datetime-local" id="masterDate" oninput="syncDates(this.value)"></div>
+        <div class="col-span-2"><label>Name of Call Recipient</label><input type="text"></div>
+    </div>
+
+    <div style="margin: 15px 0; padding: 10px; background: #f9f9f9; border-radius: 4px;">
+        <label style="margin-bottom: 8px;">Telephone Arrangements Made:</label>
+        <div class="checkbox-group">
+            <div class="check-item"><input type="checkbox"> YES</div>
+            <div class="check-item"><input type="checkbox"> NO</div>
+        </div>
+    </div>
+
+    <div class="section-title">Patient Information</div>
+    
+    <div class="grid-row">
+        <div class="col-span-4"><label>Patient's Name (Surname, Given Name, Middle Name)</label><input type="text"></div>
+        <div class="col-span-4"><label>Patient's Address</label><input type="text"></div>
+        <div><label>Age</label><input type="text"></div>
+        <div><label>Sex</label><input type="text"></div>
+        <div class="col-span-2"><label>Contact No.</label><input type="text"></div>
+        <div class="col-span-4"><label>Accompanying the Patient</label><input type="text"></div>
+    </div>
+
+    <div class="grid-row">
+        <div class="col-span-4"><label>Chief Complaint / Clinical History</label><textarea rows="3"></textarea></div>
+    </div>
+
+    <div style="margin: 15px 0;">
+        <label>Vital Signs</label>
+        <div class="vital-signs">
+            <div class="vital-item"><label>BP</label><input type="text"></div>
+            <div class="vital-item"><label>Temperature (C)</label><input type="text"></div>
+            <div class="vital-item"><label>O Saturation (%)</label><input type="text"></div>
+            <div class="vital-item"><label>Pulse Rate (PR)</label><input type="text"></div>
+            <div class="vital-item"><label>Respiratory Rate (RR)</label><input type="text"></div>
+        </div>
+    </div>
+
+    <div class="grid-row">
+        <div class="col-span-4"><label>Allergies</label><input type="text"></div>
+        <div class="col-span-4"><label>Diagnosis</label><textarea rows="3"></textarea></div>
+        <div class="col-span-4"><label>Reason for Referral</label><textarea rows="3"></textarea></div>
+    </div>
+
+    <div class="section-title">Referring Facility Authorization</div>
+
+    <div class="grid-row">
+        <div class="col-span-4"><label>Referring Facility Name & Signature</label><input type="text"></div>
+        <div class="col-span-2"><label>Date</label><input type="date" id="referralDate" oninput="syncDates(this.value)"></div>
+    </div>
+
+    <div class="section-title">Back Referral</div>
+
+    <div class="grid-row">
+        <div class="col-span-4"><label>Response from Receiving Facility</label><textarea rows="3"></textarea></div>
+        <div class="col-span-4"><label>Recommendations</label><textarea rows="3"></textarea></div>
+    </div>
+
+    <div class="signature-row">
+        <div class="sig-box">
+            <label>Receiving Facility Representative</label>
+            <div class="sig-line"></div>
+            <label style="margin-top: 5px;">Date</label>
+            <input type="date" id="receivingDate" oninput="syncDates(this.value)">
+        </div>
+        <div class="sig-box">
+            <label>Referring Physician</label>
+            <div class="sig-line"></div>
+            <label style="margin-top: 5px;">Date</label>
+            <input type="date" id="physicianDate" oninput="syncDates(this.value)">
+        </div>
+    </div>
+
+    <div class="action-bar">
+        <button class="btn" onclick="location.href='index.html'" style="background: #7f8c8d; margin-right: 10px;">← Back to Dashboard</button>
+        <button class="btn" onclick="window.print()">Save & Print Form</button>
+    </div>
+</div>
+
+<script>
+    function syncDates(val) {
+        document.getElementById('masterDate').value = val;
+        document.getElementById('referralDate').value = val;
+        document.getElementById('receivingDate').value = val;
+        document.getElementById('physicianDate').value = val;
+    }
+</script>
+
+</body>
+</html>
